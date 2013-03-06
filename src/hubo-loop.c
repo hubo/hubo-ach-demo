@@ -157,8 +157,9 @@ void huboLoop() {
 
 	// time info
 	struct timespec t;
+	int interval = 1000000000; // 1hz (1.0 sec)
 	//int interval = 500000000; // 2hz (0.5 sec)
-	int interval = 10000000; // 100 hz (0.01 sec)
+	//int interval = 10000000; // 100 hz (0.01 sec)
 	//int interval = 5000000; // 200 hz (0.005 sec)
 	//int interval = 2000000; // 500 hz (0.002 sec)
 
@@ -169,6 +170,9 @@ void huboLoop() {
 	// get current time
 	//clock_gettime( CLOCK_MONOTONIC,&t);
 	clock_gettime( 0,&t);
+
+
+int tmpFlag = 0;
 
 	while(1) {
 		// wait until next shot
@@ -192,9 +196,14 @@ void huboLoop() {
 // ---------------[ DO NOT EDIT AVBOE THIS LINE]---------------------------------
 // ------------------------------------------------------------------------------
 
-
-			H_ref.ref[LEB] = -1.0;
-			double encLEB = H_state.joint[LEB].pos;
+if (tmpFlag == 0){
+	H_ref.ref[RSP] = -0.5;
+	tmpFlag = 1;
+}
+else {
+	H_ref.ref[RSP] = 0.5;
+	tmpFlag = 0;
+}
 
 // ------------------------------------------------------------------------------
 // ---------------[ DO NOT EDIT BELOW THIS LINE]---------------------------------

@@ -138,12 +138,12 @@ void huboLoop() {
 	size_t fs;
 	//int r = ach_get( &chan_hubo_ref, &H, sizeof(H), &fs, NULL, ACH_O_LAST );
 	//assert( sizeof(H) == fs );
-	int r = ach_get( &chan_hubo_ref, &H_ref, sizeof(H_ref), &fs, NULL, ACH_O_LAST );
+	int r = ach_get( &chan_hubo_ref, &H_ref, sizeof(H_ref), &fs, NULL, ACH_O_WAIT );
 	if(ACH_OK != r) {
 		if(hubo_debug) {
 			printf("Ref ini r = %s\n",ach_result_to_string(r));}
 		}
-	else{   assert( sizeof(H_ref) == fs ); }
+//	else{   assert( sizeof(H_ref) == fs ); }
 
 	r = ach_get( &chan_hubo_state, &H_state, sizeof(H_state), &fs, NULL, ACH_O_LAST );
 	if(ACH_OK != r) {
@@ -151,7 +151,7 @@ void huboLoop() {
 			printf("State ini r = %s\n",ach_result_to_string(r));}
 		}
 	else{
-		assert( sizeof(H_state) == fs );
+//		assert( sizeof(H_state) == fs );
 	 }
 
 
@@ -180,13 +180,13 @@ void huboLoop() {
 			if(hubo_debug) {
 				printf("Ref r = %s\n",ach_result_to_string(r));}
 			}
-		else{   assert( sizeof(H_ref) == fs ); }
+//		else{   assert( sizeof(H_ref) == fs ); }
 		r = ach_get( &chan_hubo_state, &H_state, sizeof(H_state), &fs, NULL, ACH_O_LAST );
 		if(ACH_OK != r) {
 			if(hubo_debug) {
 				printf("State r = %s\n",ach_result_to_string(r));}
 			}
-		else{   assert( sizeof(H_state) == fs ); }
+//		else{   assert( sizeof(H_state) == fs ); }
 
 // ------------------------------------------------------------------------------
 // ---------------[ DO NOT EDIT AVBOE THIS LINE]---------------------------------

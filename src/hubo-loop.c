@@ -193,13 +193,12 @@ void huboLoop() {
 // ------------------------------------------------------------------------------
 
 
-			H_ref.ref[LEB] = -1.0;
-			double encLEB = H_state.joint[LEB].pos;
+    printf("Size: Ref = %d  State = %d \n\r", sizeof(H_ref), sizeof(H_state));
 
 // ------------------------------------------------------------------------------
 // ---------------[ DO NOT EDIT BELOW THIS LINE]---------------------------------
 // ------------------------------------------------------------------------------
-		ach_put( &chan_hubo_ref, &H_ref, sizeof(H_ref));
+//		ach_put( &chan_hubo_ref, &H_ref, sizeof(H_ref));
 		t.tv_nsec+=interval;
 		tsnorm(&t);
 	}

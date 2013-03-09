@@ -138,7 +138,7 @@ void huboLoop() {
 	size_t fs;
 	//int r = ach_get( &chan_hubo_ref, &H, sizeof(H), &fs, NULL, ACH_O_LAST );
 	//assert( sizeof(H) == fs );
-	int r = ach_get( &chan_hubo_ref, &H_ref, sizeof(H_ref), &fs, NULL, ACH_O_WAIT );
+	int r = ach_get( &chan_hubo_ref, &H_ref, sizeof(H_ref), &fs, NULL, ACH_O_LAST );
 	if(ACH_OK != r) {
 		if(hubo_debug) {
 			printf("Ref ini r = %s\n",ach_result_to_string(r));}
@@ -175,7 +175,7 @@ void huboLoop() {
 		clock_nanosleep(0,TIMER_ABSTIME,&t, NULL);
 
 		/* Get latest ACH message */
-		r = ach_get( &chan_hubo_ref, &H_ref, sizeof(H_ref), &fs, NULL, ACH_O_LAST );
+		r = ach_get( &chan_hubo_ref, &H_ref, sizeof(H_ref), &fs, NULL, ACH_O_WAIT );
 		if(ACH_OK != r) {
 			if(hubo_debug) {
 				printf("Ref r = %s\n",ach_result_to_string(r));}
